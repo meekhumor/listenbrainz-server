@@ -442,6 +442,7 @@ declare type ACRMSearchResult = {
   recording_name: string;
   release_mbid: string;
   release_name: string;
+  recording_length: string;
 };
 
 type CoverArtGridOptions = {
