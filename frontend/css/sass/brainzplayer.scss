@@ -18,6 +18,18 @@ $youtube-button-size: 30px;
 $youtube-resize-transition: width 0.15s ease-in-out, height 0.15s ease-in-out;
 $youtube-expanded-width: 1280px;
 
+// Hide player during onboarding tour steps 
+body.tour-active-hide-player {
+  #brainz-player,
+  .volume,
+  .queue {
+    display: none !important;
+  }
+  .container-react {
+    padding-bottom: 0 !important;
+  }
+}
+
 #brainz-player {
   position: fixed;
   bottom: 0;

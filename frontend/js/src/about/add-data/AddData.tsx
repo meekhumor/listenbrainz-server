@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function AddData() {
   return (
-    <>
+    <div id="add-data-content">
       <h2 className="page-title">Adding your data to Listenbrainz</h2>
       <h3>Submit Listens</h3>
       <p>Submit your listening history to ListenBrainz.</p>
@@ -554,6 +554,6 @@ export default function AddData() {
         Listenbrainz API. Information on how to do this can be found in the{" "}
         <a href="https://listenbrainz.readthedocs.io">API docs</a>.
       </p>
-    </>
+    </div>
   );
 }
