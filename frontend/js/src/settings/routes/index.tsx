@@ -31,6 +31,14 @@ const getSettingsRoutes = (): RouteObject[] => {
           },
         },
         {
+          path: "feature-guide/",
+          lazy: {
+            Component: async () => {
+              return (await import("../feature-guide/FeatureGuide")).default;
+            },
+          },
+        },
+        {
           path: "music-services/details/",
           lazy: {
             Component: async () => {
