@@ -102,7 +102,7 @@ export default class FollowerFollowingCards extends React.Component<
     }
 
     return (
-      <div data-testid="follower-following-cards">
+      <div id="follower-following-section" data-testid="follower-following-cards">
         <div className="text-center follower-following-pills py-3">
           <div className="btn-group center-block" role="group">
             <Pill
