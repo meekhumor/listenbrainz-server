@@ -42,6 +42,8 @@
 @import "similarity";
 @import "dashboard";
 @import "cover-art-grids";
+@import "tour-tool-tip";
+@import "tour-modal";
 
 // pre is used in a tooltip with a different background color
 pre {
@@ -79,6 +81,7 @@ b,
 html {
   font-size: 10px;
   -webkit-tap-highlight-color: black;
+  overscroll-behavior: none; // restrict overscroll
 }
 
 h1,
@@ -115,7 +118,7 @@ ol {
 }
 
 .container-react-main {
-  min-height: 70vh;
+  flex-grow: 1;
   padding-left: $grid-gutter-width * 0.5;
   padding-right: $grid-gutter-width * 0.5;
 }

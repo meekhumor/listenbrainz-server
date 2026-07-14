@@ -34,7 +34,7 @@ export interface TourHookConfig {
   steps: LBTourStep[]; // Tour steps
   tourName: string;
   description: string;
-  getStartRoute: (
+  getStartRoute?: (
     // Route to navigate to before starting or resuming the tour.
     username: string,
     fromStep: number,
@@ -163,10 +163,10 @@ export function useTour(config: TourHookConfig): TourHookReturn {
     isHamburger: isHamburgerVP,
   } = useViewportBreakpoints();
 
-  // Tour steps resolve when viewport or run state changes.
+  // Tour steps resolve when viewport changes.
   const steps = React.useMemo(
     () => resolveStepsForViewport(rawSteps, isMobileVP, isHamburgerVP),
-    [isMobileVP, isHamburgerVP, run]
+    [isMobileVP, isHamburgerVP]
   );
 
   // Hide the brainzplayer on all steps by default when tour is active, unless explicitly disabled.
@@ -241,15 +241,26 @@ export function useTour(config: TourHookConfig): TourHookReturn {
         isMobileVP,
         isHamburgerVP
       );
-      const targetRoute = getStartRoute(
-        currentUser.name,
-        fromStep,
-        resolvedSteps
-      );
+      let targetRoute: string | null = null;
+      if (getStartRoute) {
+        targetRoute = getStartRoute(currentUser.name, fromStep, resolvedSteps);
+      } else {
+        // Search backwards from the step to find the nearest navigateTo route
+        for (let i = fromStep; i >= 0; i -= 1) {
+          if (resolvedSteps[i]?.navigateTo) {
+            targetRoute = resolvedSteps[i].navigateTo ?? null;
+            break;
+          }
+        }
+      }
 
-      if (targetRoute && window.location.pathname !== targetRoute) {
+      const needsNavigation =
+        targetRoute && window.location.pathname !== targetRoute;
+
+      if (needsNavigation) {
         setRun(false);
-        navigate(targetRoute);
+        navigate(targetRoute!);
+        await sleep(300);
       }
 
       const selector =
@@ -463,6 +474,7 @@ export function useTour(config: TourHookConfig): TourHookReturn {
             if (needsNav) {
               setRun(false);
               navigate(prevStep.navigateTo!);
+              await sleep(300);
               const selectorToWait = prevStep.waitForSelector;
               if (selectorToWait !== false) {
                 const selector =

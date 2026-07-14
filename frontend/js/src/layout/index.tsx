@@ -6,6 +6,7 @@ import { Provider as NiceModalProvider } from "@ebay/nice-modal-react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ProtectedRoutes from "../utils/ProtectedRoutes";
+import TourManager from "../components/tours/TourManager";
 
 const BrainzPlayer = React.lazy(() =>
   import("../common/brainzplayer/BrainzPlayer")
@@ -34,6 +35,7 @@ export default function Layout({
       />
       <ScrollRestoration />
       <Navbar />
+      <TourManager />
       <div className="container-react">
         <div className="container-react-main">
           {!withProtectedRoutes && <Outlet />}
