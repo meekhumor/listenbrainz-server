@@ -14,6 +14,10 @@ type Section = {
 
 const sections: Section[] = [
   {
+    title: "Onboarding",
+    links: [{ to: "feature-guide/", label: "Feature Guide" }],
+  },
+  {
     title: "Music",
     links: [
       { to: "music-services/details/", label: "Connect services" },
