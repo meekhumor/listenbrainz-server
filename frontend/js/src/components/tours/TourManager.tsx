@@ -1,6 +1,9 @@
 import * as React from "react";
 import { TooltipRenderProps } from "react-joyride";
 import SetupTourManager from "./SetupTourManager";
+import ListensTourManager from "./ListensTourManager";
+import SocialTourManager from "./SocialTourManager";
+import StatsTourManager from "./StatsTourManager";
 
 export {
   LBTourStep,
@@ -84,5 +87,12 @@ export function TourTooltip({
 }
 
 export default function TourManager() {
-  return <SetupTourManager />;
+  return (
+    <>
+      <SetupTourManager />
+      <ListensTourManager />
+      <SocialTourManager />
+      <StatsTourManager />
+    </>
+  );
 }

@@ -60,7 +60,7 @@ function SimilarUsersModal(props: SimilarUsersModalProps) {
   ]);
 
   return (
-    <div data-testid="similar-users-modal">
+    <div id="similar-users" data-testid="similar-users-modal">
       <h3 className="text-center" style={{ marginTop: "10px" }}>
         Similar Users
       </h3>

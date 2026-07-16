@@ -439,6 +439,7 @@ function BrainzPlayerUI(props: React.PropsWithChildren<BrainzPlayerUIProps>) {
             <FontAwesomeIcon icon={faMaximize} onClick={toggleMusicPlayer} />
           ) : (
             <FontAwesomeIcon
+              id="queue-panel-toggle"
               icon={faBarsStaggered}
               onClick={toggleQueue}
               title="Show Queue"

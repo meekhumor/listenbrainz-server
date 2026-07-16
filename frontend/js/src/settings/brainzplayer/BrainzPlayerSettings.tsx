@@ -216,6 +216,7 @@ function BrainzPlayerSettings() {
             </p>
           )}
         </summary>
+        <div id="data-sources">
         <h3 className="mt-4">Play music with...</h3>
         <p>Choose which music services to use for playback in ListenBrainz.</p>
 
@@ -559,6 +560,8 @@ function BrainzPlayerSettings() {
             Internet Archive is a free, public domain audio archive.
           </small>
         </div>
+        </div>
+        <div id="source-order">
         <h3 className="mt-4">Music services priority</h3>
         <p>
           You have the option to adjust the priority of the music services. They
@@ -598,6 +601,7 @@ function BrainzPlayerSettings() {
             </Card>
           ))}
         </ReactSortable>
+        </div>
       </details>
       <ReactTooltip id="login-first" aria-haspopup="true" delayHide={500}>
         You must login to this service in the &quot;Connect services&quot;
