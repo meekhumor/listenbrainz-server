@@ -7,6 +7,7 @@ from listenbrainz.webserver import db_conn
 from listenbrainz.webserver.utils import generate_string
 from listenbrainz.webserver.timescale_connection import _ts as ts
 import listenbrainz.db.user as db_user
+import listenbrainz.db.onboarding as db_onboarding
 
 _session_key = "musicbrainz"
 
@@ -46,6 +47,8 @@ def get_user():
         db_user.create(db_conn, musicbrainz_row_id, musicbrainz_id, email=user_email)
         user = db_user.get_by_mb_id(db_conn, musicbrainz_id, fetch_email=True)
         ts.set_empty_values_for_user(user["id"])
+        
+        db_onboarding.create_setup_onboarding_row(db_conn, user["id"])
     else:  # an existing user is trying to log in
         # Other option is to change the return type of get_by_mb_row_id to a dict
         # but its used so widely that we would modify huge number of tests
